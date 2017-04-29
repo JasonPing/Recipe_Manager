@@ -1,0 +1,47 @@
+<% if params[:request_recipe_id]%>
+<h1>Add Ingredient to Recipe <%= params[:request_recipe_id] %> </h1>
+<% if flash[:notice] %>
+   <h4><%= flash[:notice] %></h4>
+ <% end %>
+<% else %>
+<h1>Ingredient Table </h1>
+<% end %>
+
+
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <% if params[:request_recipe_id]%>
+        <th>Add</th>
+      <% end %>
+      <th>Extra</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+    <tr>
+      <td> <%= ingredient.id %></td>
+      <td> <%= ingredient.name %> </td>
+      <td> <%= ingredient.description %> </td>
+      <% if params[:request_recipe_id]%>
+      <td> <%= link_to "Add", add_ingredients_path({:new_recipe_id => params[:request_recipe_id],:format =>ingredient.id}) %></td>
+      <% end %>
+      <td>
+        <%=link_to "Edit", edit_ingredient_path(ingredient) %>
+        <%=link_to "Delete", ingredient_path(ingredient), method: :delete, data: {confirm:"Are you sure?"} %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to "Add Ingredient", new_ingredient_path,  class:"btn btn-small btn-primary" %>
+<%=link_to "Back", recipes_path %>

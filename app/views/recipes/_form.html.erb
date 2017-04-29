@@ -1,0 +1,10 @@
+<%= simple_form_for @recipe do |f| %>
+  <%=f.input :name, label:"Recipe Name " %>
+  <%=f.input :description, label:"Description" %>
+  <%= f.button :submit %>
+<% end %>
+
+</br>
+<%=link_to "Choose Ingredient", ingredients_path(:request_recipe_id => @recipe) , class:"btn btn-small btn-primary"%>
+
+<%=link_to "Back", recipes_path %>

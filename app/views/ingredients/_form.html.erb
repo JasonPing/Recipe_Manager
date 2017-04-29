@@ -1,0 +1,7 @@
+<%= simple_form_for @ingredient do |f| %>
+  <%=f.input :name, label:"Ingredient Name " %>
+  <%=f.input :description, label:"Description" %>
+  <%= f.button :submit %>
+<% end %>
+
+<%=link_to "Back", ingredients_path %>
